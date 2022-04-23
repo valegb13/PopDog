@@ -1,0 +1,11 @@
+{
+    "python.linting.enabled": false,
+    "cSpell.enableFiletypes": [
+        "!css",
+        "!html",
+        "!plaintext",
+        "!python"
+    ],
+    "AllAutocomplete.showCurrentDocument": true,
+    "workbench.colorTheme": "BeardedTheme Black & Amethyst",
+}

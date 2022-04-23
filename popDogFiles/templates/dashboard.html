@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="{{ category }}" style="margin-top: 50px;">
+    <div class="flash">
+        <p>{{ message }}</p>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="box" style="padding-top: -100px;">
+    <div class="profile">
+        <div class="row">
+            <div class="username">
+                <div class="column">
+                    Dashboard
+                </div>
+            </div>
+            <div class="column">
+                <img style="width: 200px; margin-right: 250px;"
+                    src="{{ url_for('static', filename='images/SMlogo.png') }}">
+            </div>
+        </div>
+        <hr>
+        {% if role == 'Administrativo' %}
+        <div class="row">
+            <div class="column">
+                <a href="{{ url_for('roles.editRoles') }}">
+                    <div class="block">
+                        <strong>Agregar y Modificar Roles</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="column">
+                <a href="{{ url_for('search.searchRedirector') }}">
+                    <div class="block">
+                        <strong>Buscar personal</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="column">
+                <a href="{{ url_for('location.searchLocation') }}">
+                    <div class="block">
+                        <strong>Asignar y Modificar Ubicación</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <a href="{{ url_for('inventory.inv')}}">
+                    <div class="block">
+                        <strong>Revisar inventario</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="column">
+                <a href="{{ url_for('maintenance.maintenanceMain') }}">
+                    <div class="block">
+                        <strong>Crear orden de mantenimiento</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="column">
+                <a href="{{ url_for('patients.patientsHandle') }}">
+                    <div class="block">
+                        <strong>Ver estado de pacientes</strong>
+                    </div>
+                </a>  
+            </div>
+        </div>
+        {% elif role == 'Médico' %}
+        <div class="row">
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('search.searchRedirector') }}">
+                    <div class="block">
+                        <strong>Buscar pacientes</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('inventory.inv') }}">
+                    <div class="block">
+                        <strong>Revisar inventario</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('patients.patientsHandle') }}">
+                    <div class="block">
+                        <strong>Ingresar y Autorizar salida de pacientes</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('information.infobay') }}">
+                    <div class="block">
+                        <strong>Ver tablero de anuncios</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        {% elif role == 'Enfermero' %}
+        <div class="row">
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('search.searchRedirector') }}">
+                    <div class="block">
+                        <strong>Buscar pacientes</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('inventory.inv') }}">
+                    <div class="block">
+                        <strong>Revisar inventario</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('patients.patientsHandle') }}">
+                    <div class="block">
+                        <strong>Ingresar pacientes</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('information.infobay') }}">
+                    <div class="block">
+                        <strong>Ver tablero de anuncios</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% elif role == 'Ingeniero' %}
+        <div class="row">
+            <div class="column" style="flex: 100%;">
+                <a href="{{ url_for('search.searchEquipment') }}">
+                    <div class="block">
+                        <strong>Buscar equipos</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" style="flex: 100%;">
+                <a href="{{ url_for('maintenance.maintenanceMain') }}">
+                    <div class="block">
+                        <strong>Ordenes de mantenimiento</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% elif role == 'Paciente' %}
+        <div class="row">
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('information.infobay') }}">
+                    <div class="block">
+                        <strong>Ver tablero de anuncios</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% elif role == 'Servicios' %}
+        <div class="row">
+            <div class="column" style="flex: 50%;">
+                <a href="{{ url_for('information.infobay') }}">
+                    <div class="block">
+                        <strong>Ver tablero de anuncios</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
